@@ -1,6 +1,8 @@
 FROM python:3.12-slim
 
-RUN useradd -m mitmproxy
+# Create mitmproxy user with fixed UID 1000
+RUN useradd -u 1000 -m mitmproxy
+
 WORKDIR /app
 
 RUN pip install --no-cache-dir mitmproxy
@@ -8,7 +10,7 @@ RUN pip install --no-cache-dir mitmproxy
 COPY block.py /app/block.py
 
 RUN mkdir -p /home/mitmproxy/.mitmproxy \
-    && chown -R mitmproxy:mitmproxy /home/mitmproxy /app
+    && chown -R 1000:1000 /home/mitmproxy /app
 
 USER mitmproxy
 
