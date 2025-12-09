@@ -16,8 +16,4 @@ VOLUME ["/home/mitmproxy/.mitmproxy"]
 
 EXPOSE 8080
 
-CMD ["mitmdump",
-     "-s", "/app/block.py",
-     "--mode", "regular",
-     "--listen-host", "0.0.0.0",
-     "--listen-port", "8080"]
+CMD ["mitmdump", "-s", "/app/block.py", "--mode", "regular", "--listen-host", "0.0.0.0", "--listen-port", "8080"]
