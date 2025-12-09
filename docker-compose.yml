@@ -1,0 +1,10 @@
+services:
+  ig-filter-proxy:
+    build: .
+    container_name: ig-filter-proxy
+    restart: unless-stopped
+    ports:
+      - "8080:8080"       # host:container
+    volumes:
+      - ./mitmproxy-data:/home/mitmproxy/.mitmproxy
+      - ./block.py:/app/block.py:ro  # edit block.py without rebuilding
